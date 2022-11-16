@@ -1,0 +1,10 @@
+<div class="container">
+  <app-header [isAdmin]="isAdmin"
+              [isConsumer]="isConsumer"
+              [isDistributor]="isDistributor"
+              [isLoggedIn]="isLoggedIn"
+              [isProducer]="isLoggedIn"
+              [username]="username">
+  </app-header>
+  <router-outlet></router-outlet>
+</div>
