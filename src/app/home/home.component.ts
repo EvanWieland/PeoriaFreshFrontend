@@ -1,25 +1,42 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../user.service";
+import {TokenService} from "../auth/token.service";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  content?: string;
+  isLoggedIn = false;
+  isAdmin = false;
+  isDistributor = false;
+  isProducer = false;
+  isConsumer = false;
+  username?: string;
 
-  constructor(private userService: UserService) {
+  constructor(private tokenService: TokenService) {
   }
 
   ngOnInit(): void {
-    this.userService.getPublicContent().subscribe(
-      data => {
-        this.content = data;
-      },
-      err => {
-        this.content = JSON.parse(err.error).message;
+    const user = this.tokenService.getUser();
+
+    if (user) {
+      this.isLoggedIn = true;
+      this.username = user.username;
+
+      const roles = this.tokenService.getRoles();
+
+      if (roles.admin) {
+        this.isAdmin = true;
+      } else if (roles.producer) {
+        this.isProducer = true;
+      } else if (roles.distributor) {
+        this.isDistributor = true;
+      } else if (roles.consumer) {
+        this.isConsumer = true;
       }
-    );
+    } else {
+      this.isLoggedIn = false;
+    }
   }
 }

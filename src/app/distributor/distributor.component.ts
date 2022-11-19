@@ -7,18 +7,21 @@ import {UserService} from "../user.service";
   styleUrls: ['./distributor.component.scss']
 })
 export class DistributorComponent implements OnInit {
-  content?: string;
+  foodBank?:string;
+  requests?: any;
+  error?: string;
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.userService.getDistributor().subscribe(
+    this.userService.getRequests().subscribe(
       data => {
-        this.content = data;
+        this.requests = data[0]?.requests;
+        this.foodBank = data[0]?.name;
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        this.error = err.error.message;
       }
     );
   }

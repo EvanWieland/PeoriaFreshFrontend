@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Roles} from "../roles";
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -30,6 +31,16 @@ export class TokenService {
       return JSON.parse(user);
     }
 
-    return {};
+    return null;
+  }
+
+  public getRoles(): Roles  {
+    const user: any = this.getUser();
+    return {
+      admin: user?.roles?.includes('ROLE_ADMIN'),
+      distributor: user?.roles?.includes('ROLE_DISTRIBUTOR'),
+      producer: user?.roles?.includes('ROLE_PRODUCER'),
+      consumer: user?.roles?.includes('ROLE_CONSUMER')
+    };
   }
 }

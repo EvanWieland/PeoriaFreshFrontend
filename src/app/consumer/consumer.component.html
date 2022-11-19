@@ -1,1 +1,19 @@
-<p>{{content}}</p>
+<div class="mt-5">
+  <h2 class="mb-3">Select your food bank</h2>
+  <div class="list-group">
+    <a *ngFor="let distributor of distributors"
+       href="/consumer/request/{{distributor.id}}"
+       routerLink="/consumer/request/{{distributor.id}}"
+       class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{distributor.name}}</h5>
+        <small>{{distributor.phone}}</small>
+      </div>
+      <p>{{distributor.address}}<br>{{distributor.city}}, {{distributor.state}} {{distributor.zip}}</p>
+    </a>
+  </div>
+</div>
+
+<ngb-alert class="mt-5" *ngIf="error">
+  {{error}}
+</ngb-alert>

@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -15,6 +15,8 @@ import {AdminComponent} from './admin/admin.component';
 import {DistributorComponent} from './distributor/distributor.component';
 import {ProducerComponent} from './producer/producer.component';
 import {ConsumerComponent} from './consumer/consumer.component';
+import {NgbAccordion, NgbAlertModule} from "@ng-bootstrap/ng-bootstrap";
+import { RequestComponent } from './consumer/request/request.component';
 
 
 @NgModule({
@@ -28,13 +30,16 @@ import {ConsumerComponent} from './consumer/consumer.component';
     HeaderComponent,
     DistributorComponent,
     ProducerComponent,
-    ConsumerComponent
+    ConsumerComponent,
+    RequestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbAlertModule,
+    ReactiveFormsModule,
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

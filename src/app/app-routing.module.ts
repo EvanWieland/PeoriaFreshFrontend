@@ -8,6 +8,7 @@ import {AdminComponent} from "./admin/admin.component";
 import {DistributorComponent} from "./distributor/distributor.component";
 import {ProducerComponent} from "./producer/producer.component";
 import {ConsumerComponent} from "./consumer/consumer.component";
+import {RequestComponent} from "./consumer/request/request.component";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -18,11 +19,13 @@ const routes: Routes = [
   {path: 'distributor', component: DistributorComponent},
   {path: 'producer', component: ProducerComponent},
   {path: 'consumer', component: ConsumerComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full'}
+  {path: 'consumer/request', redirectTo: 'consumer'},
+  {path: 'consumer/request/:id', component: RequestComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

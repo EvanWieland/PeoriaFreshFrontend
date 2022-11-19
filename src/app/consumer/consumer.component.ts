@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../user.service";
+import {Distributor} from "../distributor";
 
 @Component({
   selector: 'app-consumer',
@@ -7,18 +8,19 @@ import {UserService} from "../user.service";
   styleUrls: ['./consumer.component.scss']
 })
 export class ConsumerComponent implements OnInit {
-  content?: string;
+  distributors: Distributor[] = [];
+  error?: string;
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.userService.getConsumer().subscribe(
+    this.userService.getDistributors().subscribe(
       data => {
-        this.content = data;
+        this.distributors = data;
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        this.error = `Server error: "${err.statusText}"`;
       }
     );
   }

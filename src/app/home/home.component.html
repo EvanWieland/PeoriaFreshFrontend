@@ -1,5 +1,78 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+<div class="p-5 mb-4 bg-light rounded-3" *ngIf="isAdmin">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">You are an Admin</h1>
+    <p class="col-md-8 fs-4">Hello, Admin. Your username is also {{username}}!</p>
+    <button class="btn btn-primary btn-lg" type="button" routerLink="/admin">Go to Admin view</button>
+  </div>
+</div>
+
+<div class="p-5 mb-4 bg-light rounded-3" *ngIf="isProducer">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">You are a Gardener</h1>
+    <p class="col-md-8 fs-4">Hello, Gardener. Your username is also {{username}}!</p>
+    <button class="btn btn-primary btn-lg" type="button" routerLink="/producer">Go to Gardener view</button>
+  </div>
+</div>
+
+<div class="p-5 mb-4 bg-light rounded-3" *ngIf="isDistributor">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">You are a Food Bank person</h1>
+    <p class="col-md-8 fs-4">Hello, Food Bank person. Your username is also {{username}}!</p>
+    <button class="btn btn-primary btn-lg" type="button" routerLink="/distributor">Go to Food Bank view</button>
+  </div>
+</div>
+
+<div class="p-5 mb-4 bg-light rounded-3" *ngIf="isConsumer">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">You are a Shopper</h1>
+    <p class="col-md-8 fs-4">Hello, Shopper. Your username is also {{username}}!</p>
+    <button class="btn btn-primary btn-lg" type="button" routerLink="/consumer">Go to Shopper view</button>
+  </div>
+</div>
+
+<div class="container" *ngIf="!isLoggedIn">
+  <div class="row mt-5">
+    <div class="col-sm-4 mb-3">
+      <div class="card">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"
+             role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#868e96"></rect>
+        </svg>
+        <div class="card-body">
+          <h5 class="card-title">Gardener</h5>
+          <a href="/login" routerLink="/login" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4 mb-3">
+      <div class="card">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"
+             role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#868e96"></rect>
+        </svg>
+        <div class="card-body">
+          <h5 class="card-title">Food Bank</h5>
+          <a href="/login" routerLink="/login" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4 mb-3">
+      <div class="card">
+        <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg"
+             role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <rect width="100%" height="100%" fill="#868e96"></rect>
+        </svg>
+        <div class="card-body">
+          <h5 class="card-title">Shopper</h5>
+          <a href="/consumer" routerLink="/consumer" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
